@@ -1,46 +1,48 @@
-from dictionary import get_p_distance_matrix
+from dictionary import add_inventory
 
+def delete_item(inventory, item):
+    if item in inventory:
+        del inventory[item]
+        print(f"'{item}' has been deleted from the inventory.")
+    else:
+        print(f"'{item}' not found in the inventory.")
 
-def get_input_sequences():
-    """
-    Prompts the user for a list of sequences (lists of strings).
-    Each sequence is a string of characters.
-    """
-    sequences = []
-    num_sequences = int(input("How many sequences do you want to input? "))
-    
-    for i in range(num_sequences):
-        seq = input(f"Enter sequence {i + 1}: ")
-        sequences.append(list(seq))  # Convert the string to a list of characters
-    
-    return sequences
+def display_menu():
+    print("\nInventory Menu")
+    print("1 - Add or Update Item")
+    print("2 - Delete Item")
+    print("3 - Exit")
 
 def main():
-    while True:
-        print("\nMenu:")
-        print("1. Get p-distance matrix")
-        print("2. Exit")
+    inventory = {}
 
-        choice = input("Enter your choice (1 or 2): ")
+    while True:
+        display_menu()
+        choice = input("Enter your choice (1-3): ")
 
         if choice == '1':
-            # Get the sequences from the user
-            sequences = get_input_sequences()
+            item = input("Enter item name: ").strip()
+            try:
+                quantity = int(input(f"Enter quantity for '{item}': "))
+                add_inventory(inventory, item, quantity)
+                print(f"Inventory updated: {item} now has quantity {inventory[item]}")
+            except ValueError:
+                print("Invalid quantity. Please enter an integer.")
 
-            # Call the get_p_distance_matrix function
-            result = get_p_distance_matrix(sequences)
-
-            # Display the result
-            print("\nP-distance matrix:")
-            for row in result:
-                print(row)
         elif choice == '2':
-            print("Exiting the program.")
+            item = input("Enter item name to delete: ").strip()
+            delete_item(inventory, item)
+
+        elif choice == '3':
+            print("Exiting program.")
             break
+
         else:
-            print("Invalid choice. Please enter 1 or 2.")
+            print("Invalid option. Please select 1, 2, or 3.")
 
 if __name__ == '__main__':
     main()
+
+
 
 
