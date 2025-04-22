@@ -1,12 +1,14 @@
-# In src/homework/c_decisions/decisions.py
+# src/homework/c_decisions/decisions.py
 
-def get_options_ratio(options, total):
-    # Function to calculate ratio of options/total
-    return options / total
+def get_options_ratio(option, total):
+    """Returns the ratio of options divided by total."""
+    if total == 0:  # Avoid division by zero
+        return 0
+    return option / total
 
 def get_faculty_rating(ratio):
-    # Function to determine faculty rating based on ratio
-    if 0.9 <= ratio <= 1:
+    """Returns the faculty rating based on the ratio."""
+    if 0.9 <= ratio < 1:
         return "Excellent"
     elif 0.8 < ratio < 0.9:
         return "Very Good"
@@ -16,4 +18,3 @@ def get_faculty_rating(ratio):
         return "Needs Improvement"
     else:
         return "Unacceptable"
-
