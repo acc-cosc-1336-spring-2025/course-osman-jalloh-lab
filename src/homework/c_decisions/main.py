@@ -1,14 +1,29 @@
-from src.homework.c_decisions.decisions import get_options_ratio, get_faculty_rating
+# In src/homework/c_decisions/main.py
 
-# Prompt user for input
-options = float(input("Enter the number of options: "))
-total = float(input("Enter the total: "))
+import decisions
 
-# Calculate the ratio using the get_options_ratio function
-result = get_options_ratio(options, total)
+def main():
+    # Debugging: Print before input
+    print("Starting input prompts")
 
-# Get the faculty rating using the result (ratio)
-rating = get_faculty_rating(result)
+    options = input("Enter the number of options: ")
+    print(f"Options input: {options}")  # Debugging line to check user input
+    options = float(options)  # Now convert it to a float
 
-# Display the rating
-print(f"The faculty rating is: {rating}")
+    total = input("Enter the total number: ")
+    print(f"Total input: {total}")  # Debugging line to check user input
+    total = float(total)  # Now convert it to a float
+
+    # Get the ratio from get_options_ratio
+    ratio = decisions.get_options_ratio(options, total)
+    
+    # Get the faculty rating
+    rating = decisions.get_faculty_rating(ratio)
+    
+    # Display the result
+    print(f"Faculty Rating: {rating}")
+
+if __name__ == "__main__":
+    main()
+
+
